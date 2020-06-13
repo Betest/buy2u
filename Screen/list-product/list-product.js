@@ -10,7 +10,7 @@ import { useIsFocused } from '@react-navigation/native';
 function ListProducts({navigation}){
     const isFocused = useIsFocused();
     const [Data, setData] = useState([]);
-    const URI = "https://us-central1-apifunctions.cloudfunctions.net/api"
+    const URI = "https://us-central1-apifunctions.cloudfunctions.net/api";
     
     //res data for flatlist form api
     const fetchProducts = async () => {
@@ -27,13 +27,19 @@ function ListProducts({navigation}){
         fetchProducts();
     },[isFocused]);
 
-    //Elimina pacientes del state
-    const deleteProduct = _id => {
-      setData((productosActuales)=>{
-        return productosActuales.filter( product => product._id !== _id);
-      })
-    }
     
+    
+    const detailProduct = (id, code, name, description, image, stock, price) =>{
+      navigation.navigate('Detalle',{
+        id: id,
+        code: code,
+        name: name,
+        description: description,
+        image: image,
+        stock: stock,
+        price: price
+      });
+    }
    
     return(        
 
@@ -49,8 +55,10 @@ function ListProducts({navigation}){
 
             <FlatList 
               data={Data}
-              renderItem={({ item })=> <ProductComponent product={item} deleteProduct={deleteProduct}/>}
-              keyExtractor={product => product._id}            
+              renderItem={({item})=> <TouchableHighlight style={styles.buttonTouch} onPress={ () => detailProduct(item.id, item.code, item.name, item.description, item.image, item.stock, item.price)}>
+                <ProductComponent product={item}/>
+              </TouchableHighlight>}
+              keyExtractor={product => product.id}            
             >
 
             </FlatList>
@@ -61,11 +69,12 @@ function ListProducts({navigation}){
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      flexDirection: 'column'
+      flexDirection: 'column',
+      backgroundColor: 'white'
     },
     createAppointmentButton: {
       alignItems: 'center',
-      backgroundColor: 'orange',
+      backgroundColor: '#8E2DE2',
       padding: 20,
       borderRadius: 50,
       marginVertical: 8,
@@ -86,6 +95,9 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontWeight: 'bold'
     },
+    buttonTouch:{
+      backgroundColor: 'white'
+    }
       
   });
 

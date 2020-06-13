@@ -3,9 +3,7 @@ import { StyleSheet, Text, View, Alert } from 'react-native';
 import { TextInput, TouchableHighlight } from 'react-native-gesture-handler';
 
 
-function CreateProduct({ navigation }) {
-
-  
+function CreateProduct({ navigation }) {  
   
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
@@ -24,9 +22,6 @@ function CreateProduct({ navigation }) {
 
     } else if (isNaN(stock)) {
       Alert.alert("El stock debe ser númerico");
-
-    } else if (description.length > 10) {
-      Alert.alert("La descripcion debe tener mas de 10 caracteres");
 
     } else {
 
@@ -66,8 +61,8 @@ function CreateProduct({ navigation }) {
       <TextInput style={styles.textInput} placeholder={"Stock"}  onChangeText={text => setStock(text)} keyboardType={'numeric'}></TextInput>
       <TextInput style={styles.textInput} placeholder={"Precio"} onChangeText={text => setPrice(text)} keyboardType={'numeric'}></TextInput>
       
-      <TouchableHighlight style={styles.createAppointmentButton} onPress={createProduct}>
-        <Text style={styles.textStyleButton}>Gruadar Producto</Text>
+      <TouchableHighlight style={styles.createProductButton} onPress={createProduct}>
+        <Text style={styles.textStyleButton}>Guardar Producto</Text>
       </TouchableHighlight>
     </View>
   );
@@ -91,7 +86,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'black'
   },
-  createAppointmentButton: {
+  createProductButton: {
     alignItems: 'center',
     backgroundColor: '#78ffd6',
     padding: 10,

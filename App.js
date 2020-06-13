@@ -29,22 +29,27 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import CreateProduct from './Screen/create-product/create-product';
 import ListProducts from './Screen/list-product/list-product';
+import DetailProduct from './Screen/detail-product/detail-product';
+import UpdateProduct from './Screen/update-product/update-product';
 
 // stack instance for implements methods of stack
 const Stack = createStackNavigator();
 
-const App: () => React$Node = () => {
+function App(){
   return (
-    <>
+    
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Productos" component={ListProducts} />
+        <Stack.Screen name="Detalle" component={DetailProduct} />
         <Stack.Screen name="Crear Producto" component={CreateProduct} />
+        <Stack.Screen name="Actualizar" component={UpdateProduct} />
+        
       </Stack.Navigator>
     </NavigationContainer>
-    </>
-  );
-};
+    
+  );  
+}
 
 const styles = StyleSheet.create({ 
   scrollView: {
