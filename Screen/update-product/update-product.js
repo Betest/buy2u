@@ -38,6 +38,7 @@ function UpdateProduct({route,navigation}) {
 
             try {
                 const URI = "https://us-central1-apifunctions.cloudfunctions.net/api"
+                const URIFlask ="http://192.168.1.65:5000"
                 const response = await fetch(URI+'/update', {
                     method: 'PUT',
                     headers: {
@@ -70,9 +71,9 @@ function UpdateProduct({route,navigation}) {
             <TextInput style={styles.textInput} placeholder={"Nombre Producto"} value={nameA} onChangeText={onChangeName}></TextInput>
             <TextInput style={styles.textInput} placeholder={"Descripcion"} value={descriptionA} onChangeText={onChangeDescription}></TextInput>
             <TextInput style={styles.textInput} placeholder={"URL Imagen Producto"} value={imageA} onChangeText={onChangeImage}></TextInput>
-            <TextInput style={styles.textInput} placeholder={"Stock"} value={stockA} onChangeText={onChangeStock} keyboardType={'numeric'}></TextInput>
-            <TextInput style={styles.textInput} placeholder={"Precio"} value={priceA} onChangeText={onChangePrice} keyboardType={'numeric'}></TextInput>
-
+            <TextInput style={styles.textInput} placeholder={"Stock"} value={String(stockA)} onChangeText={onChangeStock} keyboardType={'numeric'}></TextInput>
+            <TextInput style={styles.textInput} placeholder={"Precio"} value={String(priceA)} onChangeText={onChangePrice} keyboardType={'numeric'}></TextInput>
+            
             <TouchableHighlight style={styles.createProductButton} onPress={updateProduct}>
                 <Text style={styles.textStyleButton}>Actualizar</Text>
             </TouchableHighlight>

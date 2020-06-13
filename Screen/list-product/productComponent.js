@@ -15,7 +15,7 @@ const ProductComponent= ({product})=>{
             <Text>Descripcion: {product.description}</Text>
             <Text>URL de imagen Producto: {product.image}</Text>
             <Text>Stock: {product.stock}</Text>
-            <Text>Precio: {product.price}</Text>
+            <Text>Precio: {product.price} $</Text>
             </View>
 
         </View>
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'white'
     },
     item: {
-      backgroundColor: 'white',
+      backgroundColor: '#6DD5FA',
       padding: 20,
       marginVertical: 8,
       marginHorizontal: 16,
@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
       fontSize: 18,
     },
     name: {
-      backgroundColor: '#99f2c8',
+      backgroundColor: 'white',
+      color: '#8E2DE2',
       fontSize: 22,
       borderRadius: 10,
       marginLeft: -10,

@@ -11,6 +11,7 @@ function DetailProduct({route,navigation}) {
 
     const deleteProduct = async () =>{
         try{
+            const URIFlask ="http://192.168.1.65:5000"
             const response = await fetch(URI+"/delete",{
                 method: 'delete',
                 headers:{
@@ -22,6 +23,7 @@ function DetailProduct({route,navigation}) {
                 })
             });
             const json = await response.json();
+            console.log(json);
             navigation.navigate('Productos');
         }catch(err){
             console.log(err)
@@ -39,6 +41,16 @@ function DetailProduct({route,navigation}) {
         price: price
       });
     }
+    let buttonDelete = () => {
+      Alert.alert(
+        'Eliminar Producto',
+        'Esta seguro de eliminarlo',
+        [
+          {text: 'No', onPress: () => console.warn('NO Pressed'), style: 'cancel'},
+          {text: 'Si', onPress: () => deleteProduct()},
+        ]
+      );
+    }
     
     return (
         <View style={styles.container}>
@@ -50,11 +62,11 @@ function DetailProduct({route,navigation}) {
             <Text>Stock: {stock}</Text>
             <Text>Precio: {price}</Text>
                 
-            <TouchableHighlight style={styles.createProductButton} onPress={deleteProduct}>
+            <TouchableHighlight style={styles.createProductButton} onPress={buttonDelete}>
                 <Text style={styles.textStyleButton}>Eliminar</Text>
             </TouchableHighlight>
             <TouchableHighlight style={styles.createProductButton} onPress={ () => updateProduct(id, code, name, description, image, stock, price)}>
-                <Text style={styles.textStyleButton}>Actualizar</Text>
+                <Text style={styles.textStyleButton}>Modificar</Text>
             </TouchableHighlight>
         </View>
     

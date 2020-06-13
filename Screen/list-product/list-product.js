@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert} from 'react-native';
 import { TouchableHighlight, FlatList } from 'react-native-gesture-handler';
 
 //import component
@@ -11,16 +11,18 @@ function ListProducts({navigation}){
     const isFocused = useIsFocused();
     const [Data, setData] = useState([]);
     const URI = "https://us-central1-apifunctions.cloudfunctions.net/api";
+    const URIFlask ="http://192.168.1.65:5000"
     
     //res data for flatlist form api
     const fetchProducts = async () => {
+      
         try{
           let response = await fetch(URI+"/products");
           let jsonRes = await response.json();
-          //console.log(jsonRes);
           setData(jsonRes.products);
         }catch(error){
-          console.log('error');
+          Alert.alert(`Ha ocurrido un error: ${error}`);
+          console.log(error)
         }                
     }
     useEffect(()=>{
@@ -45,7 +47,7 @@ function ListProducts({navigation}){
 
         <View style={styles.container}>
 
-            <TouchableHighlight style={styles.createAppointmentButton} onPress={()=>navigation.navigate('Crear Producto')}>
+            <TouchableHighlight style={styles.createProductButton} onPress={()=>navigation.navigate('Crear Producto')}>
 
                 <Text style={styles.buttonTextStyle}>Crear Nuevo producto</Text>
 
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
       flexDirection: 'column',
       backgroundColor: 'white'
     },
-    createAppointmentButton: {
+    createProductButton: {
       alignItems: 'center',
       backgroundColor: '#8E2DE2',
       padding: 20,

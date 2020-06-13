@@ -26,7 +26,8 @@ function CreateProduct({ navigation }) {
     } else {
 
       try {
-        const URI = "https://us-central1-apifunctions.cloudfunctions.net/api" 
+        const URI = "https://us-central1-apifunctions.cloudfunctions.net/api"
+        const URIFlask ="http://192.168.1.65:5000"
         const response = await fetch(URI+"/save", {
           method: 'POST',
           headers: {
@@ -47,7 +48,7 @@ function CreateProduct({ navigation }) {
         navigation.navigate("Productos");
 
       } catch (error) {
-        console.log(error);
+        Alert.alert(`Ha ocurrido un error: ${error}`);
       }
     }
   }
