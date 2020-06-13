@@ -23,10 +23,25 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+// Stack navigator for react-navigate
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import CreateProduct from './Screen/create-product/create-product';
+import ListProducts from './Screen/list-product/list-product';
+
+// stack instance for implements methods of stack
+const Stack = createStackNavigator();
 
 const App: () => React$Node = () => {
   return (
     <>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Productos" component={ListProducts} />
+        <Stack.Screen name="Crear Producto" component={CreateProduct} />
+      </Stack.Navigator>
+    </NavigationContainer>
     </>
   );
 };
