@@ -23,56 +23,35 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+// Stack navigator for react-navigate
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const App: () => React$Node = () => {
+import CreateProduct from './Screen/create-product/create-product';
+import ListProducts from './Screen/list-product/list-product';
+import DetailProduct from './Screen/detail-product/detail-product';
+import UpdateProduct from './Screen/update-product/update-product';
+
+// stack instance for implements methods of stack
+const Stack = createStackNavigator();
+
+function App(){
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+    
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Productos" component={ListProducts} />
+        <Stack.Screen name="Detalle" component={DetailProduct} />
+        <Stack.Screen name="Crear Producto" component={CreateProduct} />
+        <Stack.Screen name="Actualizar" component={UpdateProduct} />
+        
+      </Stack.Navigator>
+    </NavigationContainer>
+    
+  );  
+}
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
   scrollView: {
     backgroundColor: Colors.lighter,
   },
